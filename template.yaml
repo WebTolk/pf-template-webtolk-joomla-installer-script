@@ -4,7 +4,7 @@ id: joomla-installer-script
 title: Joomla installer script template
 kind: scaffold
 version: 1.0.0
-description: Copy-adapt Joomla installer script donor with language file examples.
+description: WebTolk-branded Joomla installer script. Copy files/script.php and adapt the extension-specific values described in prompts/adaptation-notes.md.
 inputs:
 - id: extension-name
   required: true
@@ -22,10 +22,6 @@ files:
   target: language/en-GB/{{ package_language_file }}
 - source: files/language/ru-RU/pkg_lib_wtmax.sys.ini
   target: language/ru-RU/{{ package_language_file }}
-- source: files/language/en-GB/plg_system_wt_amocrm_radicalform.sys.ini
-  target: language/en-GB/{{ plugin_language_file }}
-- source: files/language/ru-RU/plg_system_wt_amocrm_radicalform.sys.ini
-  target: language/ru-RU/{{ plugin_language_file }}
 prompts:
 - path: prompts/adaptation-notes.md
 tags:

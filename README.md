@@ -4,13 +4,11 @@ This ProcessForge template package contains the WebTolk-branded Joomla installer
 
 [Installer script](files/script.php) · [WebTolk](https://web-tolk.ru/) · [Process Forge](https://processforge.ru/)
 
-Copy and adapt the installer script and matching language examples for Joomla extension packages. The included WT Max and AmoCRM RadicalForm strings are donor examples and must be retargeted unless the target package really uses them.
+## Adapt the template
 
-## Required Adaptation
+Copy `files/script.php` to the path declared in the target Joomla manifest and edit that copy in place. Preserve the installer lifecycle, compatibility checks and WebTolk-branded layout. Limit changes to the extension's metadata, language keys, text and links, version requirements and plugin auto-enablement.
 
-- Replace extension identifiers, language keys, minimum Joomla/PHP versions, URLs, and visible product text.
-- Remove or retarget plugin enablement logic when it does not apply to the target package.
-- Search for donor identifiers before committing.
+Use the `en-GB` and `ru-RU` `pkg_lib_wtmax.sys.ini` files as the matching language pair. The AmoCRM RadicalForm INI files are reference examples for that plugin. [Adaptation steps](prompts/adaptation-notes.md)
 
 ## ProcessForge releases
 
