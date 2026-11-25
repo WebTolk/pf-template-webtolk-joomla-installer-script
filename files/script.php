@@ -29,6 +29,8 @@ return new class () implements ServiceProviderInterface {
 		$container->set(
 			InstallerScriptInterface::class,
 			new class ($container->get(AdministratorApplication::class)) implements InstallerScriptInterface {
+				private const LANGUAGE_PREFIX = '{TYPE}_{group}_{element}';
+
 				private readonly AdministratorApplication $app;
 				private readonly DatabaseDriver $db;
 				private string $minimumJoomla = '4.4.0';
@@ -79,9 +81,9 @@ return new class () implements ServiceProviderInterface {
 					$html      = '
 					<div class="row m-0">
 						<div class="col-12 col-md-8 p-0 pe-2">
-							<h2>' . $smile . ' ' . Text::_('PKG_LIB_WTMAX_AFTER_' . $typeUpper) . ' <br/>' . Text::_('PKG_LIB_WTMAX') . '</h2>
-							' . Text::_('PKG_LIB_WTMAX_XML_DESCRIPTION') . '
-							' . Text::_('PKG_LIB_WTMAX_WHATS_NEW') . '
+							<h2>' . $smile . ' ' . Text::_(self::LANGUAGE_PREFIX . '_AFTER_' . $typeUpper) . ' <br/>' . Text::_(self::LANGUAGE_PREFIX) . '</h2>
+							' . Text::_(self::LANGUAGE_PREFIX . '_XML_DESCRIPTION') . '
+							' . Text::_(self::LANGUAGE_PREFIX . '_WHATS_NEW') . '
 						</div>
 						<div class="col-12 col-md-4 p-0 d-flex flex-column justify-content-start">
 							<img width="180" src="https://web-tolk.ru/web_tolk_logo_wide.png" alt="WebTolk">
@@ -91,11 +93,11 @@ return new class () implements ServiceProviderInterface {
 								<a class="btn btn-sm btn-outline-primary" href="mailto:info@web-tolk.ru"><i class="icon-envelope"></i> info@web-tolk.ru</a>
 							</p>
 							<div class="btn-group-vertical mb-3 web-tolk-btn-links" role="group" aria-label="WebTolk community links">
-								<a class="btn btn-danger text-white w-100" href="https://t.me/joomlaru" target="_blank" rel="noopener noreferrer">' . Text::_('PKG_LIB_WTMAX_JOOMLARU_TELEGRAM_CHAT') . '</a>
-								<a class="btn btn-primary text-white w-100" href="https://t.me/webtolkru" target="_blank" rel="noopener noreferrer">' . Text::_('PKG_LIB_WTMAX_WEBTOLK_TELEGRAM_CHANNEL') . '</a>
-								<a class="btn btn-success text-white w-100" href="https://max.ru/join/LChBfwGDmArJpK6--oS0qVAJA1WdRk0OPXciwryF4ZY" target="_blank" rel="noopener noreferrer">' . Text::_('PKG_LIB_WTMAX_MAX_CHANNEL') . '</a>
+								<a class="btn btn-danger text-white w-100" href="https://t.me/joomlaru" target="_blank" rel="noopener noreferrer">' . Text::_(self::LANGUAGE_PREFIX . '_JOOMLARU_TELEGRAM_CHAT') . '</a>
+								<a class="btn btn-primary text-white w-100" href="https://t.me/webtolkru" target="_blank" rel="noopener noreferrer">' . Text::_(self::LANGUAGE_PREFIX . '_WEBTOLK_TELEGRAM_CHANNEL') . '</a>
+								<a class="btn btn-success text-white w-100" href="https://max.ru/join/LChBfwGDmArJpK6--oS0qVAJA1WdRk0OPXciwryF4ZY" target="_blank" rel="noopener noreferrer">' . Text::_(self::LANGUAGE_PREFIX . '_MAX_CHANNEL') . '</a>
 							</div>
-							' . Text::_('PKG_LIB_WTMAX_MAYBE_INTERESTING') . '
+							' . Text::_(self::LANGUAGE_PREFIX . '_MAYBE_INTERESTING') . '
 						</div>
 					</div>';
 
@@ -109,7 +111,7 @@ return new class () implements ServiceProviderInterface {
 					if (!(new Version())->isCompatible($this->minimumJoomla))
 					{
 						$this->app->enqueueMessage(
-							Text::sprintf('PKG_LIB_WTMAX_ERROR_COMPATIBLE_JOOMLA', $this->minimumJoomla),
+							Text::sprintf(self::LANGUAGE_PREFIX . '_ERROR_COMPATIBLE_JOOMLA', $this->minimumJoomla),
 							'error'
 						);
 
@@ -119,7 +121,7 @@ return new class () implements ServiceProviderInterface {
 					if (!(version_compare(PHP_VERSION, $this->minimumPhp) >= 0))
 					{
 						$this->app->enqueueMessage(
-							Text::sprintf('PKG_LIB_WTMAX_ERROR_COMPATIBLE_PHP', $this->minimumPhp),
+							Text::sprintf(self::LANGUAGE_PREFIX . '_ERROR_COMPATIBLE_PHP', $this->minimumPhp),
 							'error'
 						);
 

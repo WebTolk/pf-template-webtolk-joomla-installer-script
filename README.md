@@ -10,7 +10,7 @@ Copy `files/script.php` to the path declared in the target Joomla manifest and e
 
 Target Joomla 5 and 6 and use supported APIs verified against the ProcessForge Joomla sources. Ask the user separately about automatic plugin activation and layout management before connecting either action.
 
-Use the `en-GB` and `ru-RU` `pkg_lib_wtmax.sys.ini` files as the matching language pair. The AmoCRM RadicalForm INI files are reference examples for that plugin. [Adaptation steps](prompts/adaptation-notes.md)
+Copy both language files for each locale. `{TYPE}_{group}_{element}.ini` contains runtime strings and `{TYPE}_{group}_{element}.sys.ini` contains installer messages and manifest strings. Rename them to match the extension, such as `plg_system_example.ini` and `plg_system_example.sys.ini` for a plugin. [Adaptation steps](prompts/adaptation-notes.md)
 
 ## ProcessForge releases
 

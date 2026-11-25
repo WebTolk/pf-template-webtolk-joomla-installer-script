@@ -14,14 +14,19 @@ inputs:
   required: false
 outputs:
 - path: script.php
-- path: language/<lang>/<extension>.sys.ini
+- path: 'language/<lang>/{TYPE}_{group}_{element}.ini'
+- path: 'language/<lang>/{TYPE}_{group}_{element}.sys.ini'
 files:
 - source: files/script.php
   target: script.php
-- source: files/language/en-GB/pkg_lib_wtmax.sys.ini
-  target: language/en-GB/{{ package_language_file }}
-- source: files/language/ru-RU/pkg_lib_wtmax.sys.ini
-  target: language/ru-RU/{{ package_language_file }}
+- source: 'files/language/en-GB/{TYPE}_{group}_{element}.ini'
+  target: 'language/en-GB/{TYPE}_{group}_{element}.ini'
+- source: 'files/language/en-GB/{TYPE}_{group}_{element}.sys.ini'
+  target: 'language/en-GB/{TYPE}_{group}_{element}.sys.ini'
+- source: 'files/language/ru-RU/{TYPE}_{group}_{element}.ini'
+  target: 'language/ru-RU/{TYPE}_{group}_{element}.ini'
+- source: 'files/language/ru-RU/{TYPE}_{group}_{element}.sys.ini'
+  target: 'language/ru-RU/{TYPE}_{group}_{element}.sys.ini'
 prompts:
 - path: prompts/adaptation-notes.md
 tags:
@@ -29,26 +34,14 @@ tags:
 - php
 - installer
 - source-file-template
-source_root_id: global-source-file-templates
-source_paths:
-- InstallerScript/script.php
-- InstallerScript/language/en-GB/pkg_lib_wtmax.sys.ini
-- InstallerScript/language/ru-RU/pkg_lib_wtmax.sys.ini
-- InstallerScript/language/en-GB/plg_system_wt_amocrm_radicalform.sys.ini
-- InstallerScript/language/ru-RU/plg_system_wt_amocrm_radicalform.sys.ini
 adaptation_required: true
 usage_policy:
   read_readme_first: true
-  do_not_copy_as_is_unless_target_is_wt_max_package: true
   remove_or_retarget_enable_plugin_for_non_matching_packages: true
   search_for_donor_identifiers_before_commit:
   - WTMAX
   - WT Max
   - wtmax
-  - AmoCRM
-  - RadicalForm
-  - PKG_LIB_WTMAX
-  - PLG_WT_AMOCRM_RADICALFORM
 update_sites:
   - id: webtolk-github
     enabled: true

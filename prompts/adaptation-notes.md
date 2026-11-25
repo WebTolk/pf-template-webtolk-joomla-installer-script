@@ -22,9 +22,16 @@ Use `Joomla\CMS\Installer\InstallerScriptInterface` and `Joomla\CMS\Installer\In
 ## Apply the template
 
 1. Copy the PHP file into the target extension and reference it in the Joomla manifest's `<scriptfile>` element. If the element already exists, use its current path.
-2. Copy the `en-GB` and `ru-RU` `pkg_lib_wtmax.sys.ini` files from `files/language/`. Rename them for the target Joomla element and use the same language-key prefix in the PHP file and both INI files. The AmoCRM RadicalForm INI files are reference examples for that plugin.
+2. Copy both files from each locale directory and adapt their names and keys as described under [Language files](#language-files).
 3. Update the package metadata, language text and any extension-specific links. Keep the existing version placeholder when the target build supplies it. Keep the WebTolk logo, website and community links for a WebTolk-branded installer.
 4. Set `$minimumJoomla` and `$minimumPhp` to the requirements of the target Joomla 5 or 6 extension. Keep the existing compatibility check logic.
 5. For confirmed auto-enablement, set `$plugin->element` and `$plugin->folder` in `enablePlugin()` to the target plugin's element and group. Apply automatic activation on first installation by default and preserve the administrator's choice on updates. When the user declines automatic activation in this script, remove the call, the method and any database setup used exclusively by it.
 6. For confirmed layout management, use the target manifest's `<layouts>` section to identify package files and their destination under Joomla's shared `layouts` directory. Copy the listed entries on installation and updates, and remove the listed entries on uninstall. Check that each path stays inside the layout directory owned by the extension.
-7. Compare the result with `files/script.php` and check that every change serves the target extension. Verify both INI files define the keys the script reads, check for leftover donor identifiers and run `php -l` on the adapted script.
+7. Compare the result with `files/script.php` and check that every change serves the target extension. Verify the `.sys.ini` files in both locales define every key the installer reads. Check for unresolved placeholders and donor identifiers, then run `php -l` on the adapted script.
+
+## Language files
+
+- Copy the `.ini` and `.sys.ini` templates for both `en-GB` and `ru-RU`. Put translations used by the installed extension in `.ini`. Keep installer messages and the manifest's name and description in `.sys.ini`.
+- Replace `{TYPE}_{group}_{element}` in filenames with the lower-case language basename expected by Joomla. For a plugin, take the group and element from the target manifest, such as `plg_system_example`. For an extension without a group, omit that segment and its separator, as in `com_example`, `mod_example` or `pkg_example`.
+- Replace the prefix in all language keys and in `LANGUAGE_PREFIX` in `script.php` with the uppercase basename, such as `PLG_SYSTEM_EXAMPLE`. Keep the key suffixes and replace `{extension_name}` and `{extension_description}` with localized text. Fill `_WHATS_NEW` when the extension has release notes.
+- Include both renamed files for each locale using the target manifest's existing language installation convention.
