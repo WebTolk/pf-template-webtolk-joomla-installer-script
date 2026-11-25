@@ -1,0 +1,74 @@
+schema_version: 1
+type: reusable_template
+id: joomla-installer-script
+title: Joomla installer script template
+kind: scaffold
+version: 1.0.0
+description: Copy-adapt Joomla installer script donor with language file examples.
+inputs:
+- id: extension-name
+  required: true
+- id: minimum-joomla
+  required: false
+- id: minimum-php
+  required: false
+outputs:
+- path: script.php
+- path: language/<lang>/<extension>.sys.ini
+files:
+- source: files/script.php
+  target: script.php
+- source: files/language/en-GB/pkg_lib_wtmax.sys.ini
+  target: language/en-GB/{{ package_language_file }}
+- source: files/language/ru-RU/pkg_lib_wtmax.sys.ini
+  target: language/ru-RU/{{ package_language_file }}
+- source: files/language/en-GB/plg_system_wt_amocrm_radicalform.sys.ini
+  target: language/en-GB/{{ plugin_language_file }}
+- source: files/language/ru-RU/plg_system_wt_amocrm_radicalform.sys.ini
+  target: language/ru-RU/{{ plugin_language_file }}
+prompts:
+- path: prompts/adaptation-notes.md
+tags:
+- joomla
+- php
+- installer
+- source-file-template
+source_root_id: global-source-file-templates
+source_paths:
+- InstallerScript/script.php
+- InstallerScript/language/en-GB/pkg_lib_wtmax.sys.ini
+- InstallerScript/language/ru-RU/pkg_lib_wtmax.sys.ini
+- InstallerScript/language/en-GB/plg_system_wt_amocrm_radicalform.sys.ini
+- InstallerScript/language/ru-RU/plg_system_wt_amocrm_radicalform.sys.ini
+adaptation_required: true
+usage_policy:
+  read_readme_first: true
+  do_not_copy_as_is_unless_target_is_wt_max_package: true
+  remove_or_retarget_enable_plugin_for_non_matching_packages: true
+  search_for_donor_identifiers_before_commit:
+  - WTMAX
+  - WT Max
+  - wtmax
+  - AmoCRM
+  - RadicalForm
+  - PKG_LIB_WTMAX
+  - PLG_WT_AMOCRM_RADICALFORM
+update_sites:
+  - id: webtolk-github
+    enabled: true
+    channel: stable
+    manifest_url: https://github.com/sergeytolkachyov/pf-joomla-installer-script/releases/latest/download/update-manifest.json
+    changelog_url: https://github.com/sergeytolkachyov/pf-joomla-installer-script/blob/main/CHANGELOG.md
+    trust:
+      require_https: true
+      require_sha256: true
+      allow_unsigned: true
+      signature_required: false
+    policy:
+      check_interval_hours: 24
+      auto_check: true
+      auto_stage: false
+      auto_apply: false
+      notify_operator: true
+      backup_before_apply: true
+      install_path: '${PF_TEMPLATES}/joomla-installer-script'
