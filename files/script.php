@@ -70,11 +70,16 @@ return new class () implements ServiceProviderInterface {
 					}
 
 					$smile = '';
+					$footer = '';
 
 					if ($type !== 'uninstall')
 					{
 						$smiles = ['&#9786;', '&#128512;', '&#128521;', '&#128525;', '&#128526;', '&#128522;', '&#128591;'];
 						$smile  = $smiles[array_rand($smiles)];
+
+						$footerKey = self::LANGUAGE_PREFIX . '_FOOTER';
+						$language = $this->app->getLanguage();
+						$footer = $language->hasKey($footerKey) ? Text::_($footerKey) : '';
 					}
 
 					$typeUpper = strtoupper($type);
@@ -84,6 +89,7 @@ return new class () implements ServiceProviderInterface {
 							<h2>' . $smile . ' ' . Text::_(self::LANGUAGE_PREFIX . '_AFTER_' . $typeUpper) . ' <br/>' . Text::_(self::LANGUAGE_PREFIX) . '</h2>
 							' . Text::_(self::LANGUAGE_PREFIX . '_XML_DESCRIPTION') . '
 							' . Text::_(self::LANGUAGE_PREFIX . '_WHATS_NEW') . '
+							' . $footer . '
 						</div>
 						<div class="col-12 col-md-4 p-0 d-flex flex-column justify-content-start">
 							<img width="180" src="https://web-tolk.ru/web_tolk_logo_wide.png" alt="WebTolk">

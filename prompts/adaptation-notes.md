@@ -41,3 +41,13 @@ Use `Joomla\CMS\Installer\InstallerScriptInterface` and `Joomla\CMS\Installer\In
 - Replace `{TYPE}_{group}_{element}` in filenames with the lower-case language basename expected by Joomla. For a plugin, take the group and element from the target manifest, such as `plg_system_example`. For an extension without a group, omit that segment and its separator, as in `com_example`, `mod_example` or `pkg_example`.
 - Replace the prefix in all language keys and in `LANGUAGE_PREFIX` in `script.php` with the uppercase basename, such as `PLG_SYSTEM_EXAMPLE`. Keep the key suffixes and replace `{extension_name}` and `{extension_description}` with localized text. Fill `_WHATS_NEW` when the extension has release notes.
 - Include both renamed files for each locale using the target manifest's existing language installation convention.
+
+### Optional installer footer
+
+Set `_FOOTER` in the `.sys.ini` files for links or notes shown immediately after `_WHATS_NEW` on installation and updates. Leave the value empty when the extension has no footer.
+
+For a plugin, use a relative link to the administrator plugin list. Set `filter[element]` to the plugin element and `filter[folder]` to its group. Translate the link label in each locale. [WebTolk guide to Joomla administrator filters](https://web-tolk.ru/blog/joomla-ssylki-na-spiski-sushchnostej-s-filtratsiej)
+
+```ini
+PLG_SYSTEM_EXAMPLE_FOOTER="<p><a href=\"index.php?option=com_plugins&amp;view=plugins&amp;filter[element]=example&amp;filter[folder]=system\">Open plugin settings</a></p>"
+```
