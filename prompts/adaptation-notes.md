@@ -23,11 +23,17 @@ Use `Joomla\CMS\Installer\InstallerScriptInterface` and `Joomla\CMS\Installer\In
 
 1. Copy the PHP file into the target extension and reference it in the Joomla manifest's `<scriptfile>` element. If the element already exists, use its current path.
 2. Copy both files from each locale directory and adapt their names and keys as described under [Language files](#language-files).
-3. Update the package metadata, language text and any extension-specific links. Keep the existing version placeholder when the target build supplies it. Keep the WebTolk logo, website and community links for a WebTolk-branded installer.
+3. Update the package metadata, language text and any extension-specific links. Apply the [version tag rules](#version-tags) to the PHP docblocks. Keep the WebTolk logo, website and community links for a WebTolk-branded installer.
 4. Set `$minimumJoomla` and `$minimumPhp` to the requirements of the target Joomla 5 or 6 extension. Keep the existing compatibility check logic.
 5. For confirmed auto-enablement, set `$plugin->element` and `$plugin->folder` in `enablePlugin()` to the target plugin's element and group. Apply automatic activation on first installation by default and preserve the administrator's choice on updates. When the user declines automatic activation in this script, remove the call, the method and any database setup used exclusively by it.
 6. For confirmed layout management, use the target manifest's `<layouts>` section to identify package files and their destination under Joomla's shared `layouts` directory. Copy the listed entries on installation and updates, and remove the listed entries on uninstall. Check that each path stays inside the layout directory owned by the extension.
 7. Compare the result with `files/script.php` and check that every change serves the target extension. Verify the `.sys.ini` files in both locales define every key the installer reads. Check for unresolved placeholders and donor identifiers, then run `php -l` on the adapted script.
+
+## Version tags
+
+- Keep `@version __DEPLOY_VERSION__` in source docblocks. At release packaging, the build tool, such as Phing Packager, writes the extension's release version into `@version`.
+- Use `@since __SINCE_VERSION__` in the reusable template. Resolve it to the version that introduced the code when adapting or through an explicit build rule for that token. Preserve an existing introduction version when adapting existing code.
+- Phing Packager's regular build handles `__DEPLOY_VERSION__`. For a project that uses the separate `reset-since` command, set `replace.sinceResetToken` to `__SINCE_VERSION__` for deliberate resets.
 
 ## Language files
 

@@ -6,7 +6,7 @@
  * @copyright     Copyright (c) 2026 Sergey Tolkachyov. All rights reserved.
  * @license       GNU/GPL3 http://www.gnu.org/licenses/gpl-3.0.html
  * @link          https://web-tolk.ru
- * @since         __DEPLOY_VERSION__
+ * @since         __SINCE_VERSION__
  */
 
 declare(strict_types=1);
