@@ -1,4 +1,8 @@
-# Joomla Installer Script Template
+# WebTolk Joomla Installer Script for ProcessForge
+
+This ProcessForge template package contains the WebTolk-branded Joomla installer script and its language files.
+
+[Installer script](files/script.php) · [WebTolk](https://web-tolk.ru/) · [Process Forge](https://processforge.ru/)
 
 Copy and adapt the installer script and matching language examples for Joomla extension packages. The included WT Max and AmoCRM RadicalForm strings are donor examples and must be retargeted unless the target package really uses them.
 
@@ -10,7 +14,7 @@ Copy and adapt the installer script and matching language examples for Joomla ex
 
 ## ProcessForge releases
 
-The package ID is `joomla-installer-script`. Each [release](https://github.com/sergeytolkachyov/pf-joomla-installer-script/releases) includes a ZIP with `template.yaml` at its root. Extract it into the `joomla-installer-script` directory under your workplace reusable template root and register `template.yaml` in the workplace template registry.
+The package ID is `joomla-installer-script`. Each [release](https://github.com/sergeytolkachyov/pf-template-webtolk-joomla-installer-script/releases) includes a ZIP with `template.yaml` at its root. Extract it into the `joomla-installer-script` directory under your workplace reusable template root and register `template.yaml` in the workplace template registry.
 
 ProcessForge reads the update source declared in `template.yaml`. See [CHANGELOG.md](CHANGELOG.md) for release changes.
 
