@@ -14,7 +14,7 @@ Copy and adapt the installer script and matching language examples for Joomla ex
 
 ## ProcessForge releases
 
-The package ID is `joomla-installer-script`. Each [release](https://github.com/sergeytolkachyov/pf-template-webtolk-joomla-installer-script/releases) includes a ZIP with `template.yaml` at its root. Extract it into the `joomla-installer-script` directory under your workplace reusable template root and register `template.yaml` in the workplace template registry.
+The package ID is `joomla-installer-script`. Each [release](https://github.com/WebTolk/pf-template-webtolk-joomla-installer-script/releases) includes a ZIP with `template.yaml` at its root. Extract it into the `joomla-installer-script` directory under your workplace reusable template root and register `template.yaml` in the workplace template registry.
 
 ProcessForge reads the update source declared in `template.yaml`. See [CHANGELOG.md](CHANGELOG.md) for release changes.
 
